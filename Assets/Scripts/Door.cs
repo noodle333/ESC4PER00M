@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Door : MonoBehaviour
@@ -35,7 +33,7 @@ public class Door : MonoBehaviour
 
     private void Update()
     {
-        if (inReach && Input.GetKeyDown("e") && door.GetBool("Close"))
+        if (inReach && Input.GetKeyDown(KeyCode.E) && door.GetBool("Close"))
         {
             DoorOpens();
         }
