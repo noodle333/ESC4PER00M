@@ -14,8 +14,19 @@ public class FPSController : MonoBehaviour
     Vector3 moveDirection = Vector3.zero;
     float rotationX = 0;
 
+
     [HideInInspector]
     public bool canMove = true;
+
+    //HOLDING IEMS
+    [Header("Holding Items")]
+    public bool picked;
+    [SerializeField] private float pickedSpeed;
+
+    private Vector3 pickVelocity;
+    public GameObject pickedObject;
+
+    [SerializeField] private Transform pickPos;
 
     void Start()
     {
@@ -28,6 +39,47 @@ public class FPSController : MonoBehaviour
 
     void Update()
     {
+        //HOLD ITEMS
+        Vector3 origin = playerCamera.transform.position;
+        Vector3 dir = playerCamera.transform.forward;
+
+        RaycastHit hit;
+        Ray forwardRay = new Ray(origin, dir);
+
+        if (Physics.Raycast(forwardRay, out hit, Vector3.Distance(Camera.main.transform.position, pickPos.transform.position)))
+        {
+            if (hit.transform.tag == "Pickable")
+            {
+                pickedObject = hit.transform.gameObject;
+                picked = true;
+            }
+            else
+            {
+                pickedObject = null;
+                picked = false;
+            }
+        }
+
+        if (Input.GetMouseButton(0) && picked && pickedObject != null)
+        {
+            Rigidbody rb = pickedObject.GetComponent<Rigidbody>();
+            rb.velocity = Vector3.zero;
+
+            Vector3 toPos = pickPos.transform.position - pickedObject.transform.position;
+
+            rb.velocity = toPos;
+            rb.velocity *= pickedSpeed;
+
+            if (Input.GetKey(KeyCode.R))
+            {
+                pickedObject.transform.rotation = Quaternion.identity;
+            }
+            else
+            {
+                pickedObject = null;
+            }
+        }
+
         // We are grounded, so recalculate move direction based on axes
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
