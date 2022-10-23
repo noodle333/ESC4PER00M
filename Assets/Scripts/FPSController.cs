@@ -26,7 +26,7 @@ public class FPSController : MonoBehaviour
     private Vector3 pickVelocity;
     public GameObject pickedObject;
 
-    [SerializeField] private Transform pickPos;
+    public Transform pickPos;
 
     void Start()
     {

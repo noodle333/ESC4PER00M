@@ -3,8 +3,8 @@ using UnityEngine;
 public class Flashlight : MonoBehaviour
 {
     [SerializeField] private GameObject flashlight;
-    [SerializeField] private bool on;
-    [SerializeField] private bool off;
+    public bool on;
+    public bool off;
 
     //Audio Source turnOn, turnOff,
 
