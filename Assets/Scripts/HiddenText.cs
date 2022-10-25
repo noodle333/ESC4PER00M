@@ -33,7 +33,7 @@ public class HiddenText : MonoBehaviour
                 hitObj = hit.transform.gameObject;
                 hitObj.GetComponent<MeshRenderer>().enabled = true;
             }
-            else if (playerFlashlight.off)
+            else
             {
                 if (hitObj != null)
                 {
@@ -41,14 +41,5 @@ public class HiddenText : MonoBehaviour
                 }
             }
         }
-        else
-        {
-            // Debug.Log("HIDE TEXT");
-            if (hitObj != null)
-            {
-                hitObj.GetComponent<MeshRenderer>().enabled = false;
-            }
-        }
-
     }
 }

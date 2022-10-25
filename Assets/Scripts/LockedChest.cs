@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class OpenBox : MonoBehaviour
+public class LockedChest : MonoBehaviour
 {
     [SerializeField] private Animator boxAnimator;
     [SerializeField] private GameObject keyToUnlock;
@@ -54,8 +54,9 @@ public class OpenBox : MonoBehaviour
 
         if (isOpen)
         {
+            //TURN OFF COLLISION AND SCRIPT   
             boxAnimator.GetComponent<BoxCollider>().enabled = false;
-            boxAnimator.GetComponent<OpenBox>().enabled = false;
+            boxAnimator.GetComponent<LockedChest>().enabled = false;
 
         }
     }
