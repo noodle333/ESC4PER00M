@@ -28,6 +28,10 @@ public class FPSController : MonoBehaviour
 
     public Transform pickPos;
 
+    //AUDIO
+    [SerializeField] private AudioSource playerAudio;
+    //ADD AUDIO CLIP LIST LATER 
+
     void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -117,6 +121,23 @@ public class FPSController : MonoBehaviour
             rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
+        }
+
+        if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0 || !characterController.isGrounded)
+        {
+            // Debug.Log("Still");
+            if (playerAudio.isPlaying)
+            {
+                playerAudio.Stop();
+            }
+        }
+        else
+        {
+            if (!playerAudio.isPlaying)
+            {
+                // Debug.Log("Moving");
+                playerAudio.Play();
+            }
         }
     }
 }

@@ -6,6 +6,9 @@ public class LockedDoor : MonoBehaviour
     [SerializeField] private GameObject keyToUnlock;
     [SerializeField] private GameObject openText;
     [SerializeField] private GameObject keyMissingText;
+    //PLACE IN ORDER THEY WOULD BE SEEN THROUGHOUT THE GAME
+    [SerializeField] private AudioClip[] audioClips;
+    [SerializeField] private AudioSource doorSound;
 
     public bool inReach;
     public bool isOpen;
@@ -44,12 +47,16 @@ public class LockedDoor : MonoBehaviour
             DoorOpens();
             openText.SetActive(false);
             keyMissingText.SetActive(false);
+            doorSound.clip = audioClips[1];
+            doorSound.Play();
             isOpen = true;
         }
         else if (inReach && Input.GetKeyDown("e") && !keyToUnlock.activeInHierarchy)
         {
             openText.SetActive(false);
             keyMissingText.SetActive(true);
+            doorSound.clip = audioClips[0];
+            doorSound.Play();
         }
 
         if (isOpen)
