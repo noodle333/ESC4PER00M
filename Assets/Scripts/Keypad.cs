@@ -20,9 +20,66 @@ public class Keypad : MonoBehaviour
 
     public bool animate;
 
+    private void Start()
+    {
+        keypadObj.SetActive(false);
+    }
+
     public void Number(int number)
     {
-        textObj.text += number.ToString();
+        if (!animate && textObj.textInfo.characterCount < 4)
+        {
+            textObj.text += number.ToString();
+            button.Play();
+        }
+    }
+
+    public void Execute()
+    {
+        if (textObj.text == answer)
+        {
+            correct.Play();
+            textObj.text = "Correct";
+            animate = true;
+        }
+        else
+        {
+            wrong.Play();
+            textObj.text = "Incorrect";
+        }
+    }
+
+    public void Clear()
+    {
+        textObj.text = "";
         button.Play();
+    }
+
+    public void Exit()
+    {
+        keypadObj.SetActive(false);
+        inv.SetActive(true);
+        hud.SetActive(true);
+        player.GetComponent<FPSController>().enabled = true;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    private void Update()
+    {
+        if (textObj.text == "Correct" && animate)
+        {
+            anim.SetBool("Open", true);
+            Debug.Log("Open");
+        }
+
+        if (keypadObj.activeInHierarchy)
+        {
+            hud.SetActive(false);
+            inv.SetActive(false);
+            player.GetComponent<FPSController>().enabled = false;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
 }
