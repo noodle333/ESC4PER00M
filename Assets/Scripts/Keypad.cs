@@ -22,7 +22,7 @@ public class Keypad : MonoBehaviour
 
     private void Start()
     {
-        keypadObj.SetActive(false);
+        // keypadObj.SetActive(false);
     }
 
     public void Number(int number)
@@ -36,23 +36,29 @@ public class Keypad : MonoBehaviour
 
     public void Execute()
     {
-        if (textObj.text == answer)
+        if (!animate)
         {
-            correct.Play();
-            textObj.text = "Correct";
-            animate = true;
-        }
-        else
-        {
-            wrong.Play();
-            textObj.text = "Incorrect";
+            if (textObj.text == answer)
+            {
+                correct.Play();
+                textObj.text = "Correct";
+                animate = true;
+            }
+            else
+            {
+                wrong.Play();
+                textObj.text = "Incorrect";
+            }
         }
     }
 
     public void Clear()
     {
-        textObj.text = "";
-        button.Play();
+        if (!animate)
+        {
+            textObj.text = "";
+            button.Play();
+        }
     }
 
     public void Exit()

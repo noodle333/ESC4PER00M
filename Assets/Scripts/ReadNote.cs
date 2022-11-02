@@ -1,10 +1,9 @@
 using UnityEngine;
 
-public class OpenKeypad : MonoBehaviour
+public class ReadNote : MonoBehaviour
 {
-    [SerializeField] private GameObject keypadObj;
-    [SerializeField] private GameObject keypadText;
-
+    [SerializeField] private GameObject noteObj;
+    [SerializeField] private GameObject noteText;
     public bool inReach;
 
     private void Start()
@@ -17,10 +16,7 @@ public class OpenKeypad : MonoBehaviour
         if (other.gameObject.tag == "Reach")
         {
             inReach = true;
-            if (keypadObj.GetComponent<Keypad>().animate == false)
-            {
-                keypadText.SetActive(true);
-            }
+            noteText.SetActive(true);
         }
     }
 
@@ -29,15 +25,16 @@ public class OpenKeypad : MonoBehaviour
         if (other.gameObject.tag == "Reach")
         {
             inReach = false;
-            keypadText.SetActive(false);
+            noteText.SetActive(false);
         }
     }
 
     private void Update()
     {
-        if (inReach && Input.GetKeyDown("e") && keypadObj.GetComponent<Keypad>().animate == false)
+        if (inReach && Input.GetKeyDown("e"))
         {
-            keypadObj.SetActive(true);
+            // noteText.SetActive(false);
+            noteObj.SetActive(true);
         }
     }
 }
