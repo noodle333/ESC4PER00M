@@ -4,6 +4,7 @@ public class Door : MonoBehaviour
 {
     [SerializeField] private Animator door;
     [SerializeField] private GameObject openText;
+    [SerializeField] private AudioSource doorSound;
 
     public bool inReach;
 
@@ -45,14 +46,14 @@ public class Door : MonoBehaviour
 
     private void DoorOpens()
     {
-        Debug.Log("It opens");
+        doorSound.Play();
         door.SetBool("Open", true);
         door.SetBool("Close", false);
     }
 
     private void DoorCloses()
     {
-        Debug.Log("It closes");
+        doorSound.Play();
         door.SetBool("Open", false);
         door.SetBool("Close", true);
     }
