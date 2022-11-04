@@ -76,7 +76,6 @@ public class Keypad : MonoBehaviour
         if (textObj.text == "Correct" && animate)
         {
             anim.SetBool("Open", true);
-            Debug.Log("Open");
         }
 
         if (keypadObj.activeInHierarchy)

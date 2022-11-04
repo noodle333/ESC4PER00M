@@ -9,7 +9,6 @@ public class Teleporter : MonoBehaviour
     {
         if (other.gameObject.tag == "Reach")
         {
-            Debug.Log("TP");
             player.enabled = false;
             player.transform.position = target.position;
             player.enabled = true;

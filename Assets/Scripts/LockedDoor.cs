@@ -69,7 +69,6 @@ public class LockedDoor : MonoBehaviour
 
     private void DoorOpens()
     {
-        Debug.Log("It opens");
         door.SetBool("Open", true);
         door.SetBool("Close", false);
     }

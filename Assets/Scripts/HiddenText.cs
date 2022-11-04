@@ -26,10 +26,8 @@ public class HiddenText : MonoBehaviour
 
         if (Physics.Raycast(forwardRay, out hit, Vector3.Distance(Camera.main.transform.position, flashPos.transform.position)))
         {
-            // Debug.Log("HIT");
             if (hit.transform.tag == "Hidden" && playerFlashlight.on)
             {
-                // Debug.Log("SHOW TEXT");
                 hitObj = hit.transform.gameObject;
                 hitObj.GetComponent<MeshRenderer>().enabled = true;
             }
