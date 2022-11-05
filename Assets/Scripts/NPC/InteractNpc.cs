@@ -1,22 +1,24 @@
 using UnityEngine;
 
-public class ReadNote : MonoBehaviour
+public class InteractNpc : MonoBehaviour
 {
-    [SerializeField] private GameObject noteObj;
-    [SerializeField] private GameObject noteText;
+    [SerializeField] private GameObject npcText;
+    [SerializeField] private GameObject npcCanvas;
     public bool inReach;
 
     private void Start()
     {
         inReach = false;
+        npcText.SetActive(false);
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Reach")
         {
+            npcText.SetActive(true);
             inReach = true;
-            noteText.SetActive(true);
         }
     }
 
@@ -24,17 +26,18 @@ public class ReadNote : MonoBehaviour
     {
         if (other.gameObject.tag == "Reach")
         {
+            npcText.SetActive(false);
             inReach = false;
-            noteText.SetActive(false);
         }
     }
 
     private void Update()
     {
-        if (inReach && Input.GetKeyDown("e"))
+        if (inReach && Input.GetKeyDown(KeyCode.E))
         {
-            // noteText.SetActive(false);
-            noteObj.SetActive(true);
+            npcText.SetActive(false);
+            npcCanvas.SetActive(true);
         }
     }
 }
+

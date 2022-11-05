@@ -8,10 +8,10 @@ public class WakeupAnim : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject wakeupCanvas;
 
-    [Range(0.0f, 630.0f)]
+    [Range(0.0f, 1080.0f)]
     public float upperEyeHeight;
 
-    [Range(0.0f, 630.0f)]
+    [Range(0.0f, 1080.0f)]
     public float lowerEyeHeight;
 
     public bool isAnimFinished = false;
