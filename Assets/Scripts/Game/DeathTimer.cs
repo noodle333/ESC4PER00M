@@ -7,10 +7,12 @@ public class DeathTimer : MonoBehaviour
     [SerializeField] private ThreeKeyDoor door;
     [SerializeField] private float timeUntilDeath;
     [SerializeField] private GameObject killPlayer;
+    [SerializeField] private AudioSource countdownSound;
 
     private void Start()
     {
         countdown.text = timeUntilDeath + "";
+        countdownSound.Play();
     }
 
     private void Update()

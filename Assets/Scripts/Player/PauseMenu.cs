@@ -5,6 +5,9 @@ using UnityEngine;
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject player;
+    [SerializeField] private GameObject cursor;
+
     public bool isPaused;
 
     private void Start()
@@ -14,7 +17,7 @@ public class PauseMenu : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             if (isPaused)
             {
@@ -30,13 +33,25 @@ public class PauseMenu : MonoBehaviour
     private void PauseGame()
     {
         pauseMenu.SetActive(true);
+        player.GetComponent<FPSController>().enabled = false;
+        cursor.SetActive(false);
+        Time.timeScale = 0f;
         isPaused = true;
+
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void ResumeGame()
     {
         pauseMenu.SetActive(false);
+        player.GetComponent<FPSController>().enabled = true;
+        cursor.SetActive(true);
+        Time.timeScale = 1f;
         isPaused = false;
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
 
     }
 }
