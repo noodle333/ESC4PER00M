@@ -23,6 +23,10 @@ public class DeathTimer : MonoBehaviour
             Death();
         }
         countdown.text = (int)timeUntilDeath + "";
+        if (door.isOpen && countdownSound.isPlaying)
+        {
+            countdownSound.Stop();
+        }
     }
 
     private void Countdown()
@@ -35,6 +39,7 @@ public class DeathTimer : MonoBehaviour
         if (timeUntilDeath <= 0)
         {
             killPlayer.SetActive(true);
+            countdownSound.Stop();
         }
     }
 }
