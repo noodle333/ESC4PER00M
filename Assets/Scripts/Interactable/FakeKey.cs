@@ -8,7 +8,7 @@ public class FakeKey : MonoBehaviour
     [SerializeField] private GameObject pickupText;
     [SerializeField] private AudioSource doorSound;
     [SerializeField] private AudioSource floorSound;
-    [SerializeField] private MeshRenderer mesh;
+    [SerializeField] private GameObject keyMesh;
 
     public bool inReach;
     public float timeRemaining = 1;
@@ -43,7 +43,7 @@ public class FakeKey : MonoBehaviour
     {
         if (inReach && Input.GetKeyDown(KeyCode.E))
         {
-            mesh.enabled = false;
+            keyMesh.SetActive(false);
             pickupText.SetActive(false);
 
             //CLOSE DOOR

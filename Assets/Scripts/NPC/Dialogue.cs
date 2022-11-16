@@ -8,6 +8,7 @@ public class Dialogue : MonoBehaviour
     [SerializeField] private string[] lines;
     [SerializeField] private float textSpeed;
     [SerializeField] private GameObject player;
+    [SerializeField] private AudioSource voiceSound;
 
     private int index;
 
@@ -45,6 +46,10 @@ public class Dialogue : MonoBehaviour
         foreach (char c in lines[index].ToCharArray())
         {
             textComponent.text += c;
+            if (c + "" != " ")
+            {
+                voiceSound.Play();
+            }
             yield return new WaitForSeconds(textSpeed);
         }
     }
