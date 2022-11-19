@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class SecretDoorLever : MonoBehaviour
@@ -6,6 +7,7 @@ public class SecretDoorLever : MonoBehaviour
     [SerializeField] private Animator lever;
     [SerializeField] private AudioSource doorSound;
     [SerializeField] private GameObject openleverText;
+    [SerializeField] private GameObject doorHasOpenedText;
 
     public bool inReach;
     public bool isOpen;
@@ -47,6 +49,8 @@ public class SecretDoorLever : MonoBehaviour
             DoorOpens();
             doorSound.Play();
             isOpen = true;
+            //CALL DOOR OPENS TEXT PROMPT
+            StartCoroutine("DoorHasOpenedText", 3f);
         }
 
         if (isOpen)
@@ -60,5 +64,13 @@ public class SecretDoorLever : MonoBehaviour
     {
         door.SetBool("Open", true);
         door.SetBool("Close", false);
+    }
+
+    IEnumerator DoorHasOpenedText(float showForSeconds)
+    {
+        yield return new WaitForSeconds(1);
+        doorHasOpenedText.SetActive(true);
+        yield return new WaitForSeconds(showForSeconds);
+        doorHasOpenedText.SetActive(false);
     }
 }

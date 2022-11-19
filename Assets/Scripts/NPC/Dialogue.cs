@@ -9,6 +9,7 @@ public class Dialogue : MonoBehaviour
     [SerializeField] private float textSpeed;
     [SerializeField] private GameObject player;
     [SerializeField] private AudioSource voiceSound;
+    [SerializeField] private GameObject image;
 
     private int index;
 
@@ -67,6 +68,7 @@ public class Dialogue : MonoBehaviour
             //WHEN TEXT IS OVER
             player.GetComponent<FPSController>().enabled = true;
             gameObject.SetActive(false);
+            image.SetActive(false);
         }
     }
 }
