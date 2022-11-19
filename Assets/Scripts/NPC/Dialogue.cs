@@ -11,10 +11,12 @@ public class Dialogue : MonoBehaviour
     [SerializeField] private AudioSource voiceSound;
     [SerializeField] private GameObject image;
 
+    public bool isDone;
     private int index;
 
     private void Start()
     {
+        player.GetComponent<FPSController>().playerAudio.Stop();
         player.GetComponent<FPSController>().enabled = false;
         textComponent.text = string.Empty;
         StartDialogue();
@@ -66,9 +68,10 @@ public class Dialogue : MonoBehaviour
         else
         {
             //WHEN TEXT IS OVER
-            player.GetComponent<FPSController>().enabled = true;
+            isDone = true;
             gameObject.SetActive(false);
             image.SetActive(false);
+            player.GetComponent<FPSController>().enabled = true;
         }
     }
 }

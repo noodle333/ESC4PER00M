@@ -7,9 +7,12 @@ public class OpenKeypad : MonoBehaviour
 
     public bool inReach;
 
+    private GameObject player;
+
     private void Start()
     {
         inReach = false;
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void OnTriggerEnter(Collider other)
@@ -35,7 +38,7 @@ public class OpenKeypad : MonoBehaviour
 
     private void Update()
     {
-        if (inReach && Input.GetKeyDown("e") && keypadObj.GetComponent<Keypad>().animate == false)
+        if (inReach && Input.GetKeyDown("e") && keypadObj.GetComponent<Keypad>().animate == false && player.GetComponent<CharacterController>().isGrounded)
         {
             keypadObj.SetActive(true);
         }

@@ -29,7 +29,7 @@ public class FPSController : MonoBehaviour
     public Transform pickPos;
 
     //AUDIO
-    [SerializeField] private AudioSource playerAudio;
+    public AudioSource playerAudio;
     //ADD AUDIO CLIP LIST LATER 
 
     void Start()

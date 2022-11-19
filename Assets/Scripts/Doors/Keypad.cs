@@ -7,6 +7,7 @@ public class Keypad : MonoBehaviour
     [SerializeField] private GameObject keypadObj;
     [SerializeField] private GameObject hud;
     [SerializeField] private GameObject inv;
+    [SerializeField] private GameObject flashlight;
 
     [SerializeField] private GameObject animatorObj;
     [SerializeField] private Animator anim;
@@ -19,14 +20,17 @@ public class Keypad : MonoBehaviour
     [SerializeField] private AudioSource wrong;
 
     public bool animate;
+    private bool isFlashOn;
 
-    private void Start()
-    {
-        // keypadObj.SetActive(false);
-    }
+    //TURN OFF TEXT AFTER COMPLETE
+    [SerializeField] private GameObject openText;
 
     public void Number(int number)
     {
+        if (textObj.text == "Incorrect")
+        {
+            Clear();
+        }
         if (!animate && textObj.textInfo.characterCount < 4)
         {
             textObj.text += number.ToString();
@@ -43,6 +47,7 @@ public class Keypad : MonoBehaviour
                 correct.Play();
                 textObj.text = "Correct";
                 animate = true;
+                openText.SetActive(false);
             }
             else
             {
@@ -63,12 +68,15 @@ public class Keypad : MonoBehaviour
 
     public void Exit()
     {
+        Clear();
         keypadObj.SetActive(false);
         inv.SetActive(true);
         hud.SetActive(true);
+        flashlight.SetActive(isFlashOn);
         player.GetComponent<FPSController>().enabled = true;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        isFlashOn = false;
     }
 
     private void Update()
@@ -82,9 +90,20 @@ public class Keypad : MonoBehaviour
         {
             hud.SetActive(false);
             inv.SetActive(false);
+            if (flashlight.activeInHierarchy)
+            {
+                isFlashOn = true;
+                flashlight.SetActive(false);
+            }
+            player.GetComponent<FPSController>().playerAudio.Stop();
             player.GetComponent<FPSController>().enabled = false;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Exit();
         }
     }
 }

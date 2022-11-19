@@ -9,15 +9,18 @@ public class Note : MonoBehaviour
     [SerializeField] private GameObject inv;
     [SerializeField] private GameObject flashlight;
 
+    private bool isFlashOn;
+
     private void Exit()
     {
         noteObj.SetActive(false);
         inv.SetActive(true);
         hud.SetActive(true);
-        flashlight.SetActive(true);
+        flashlight.SetActive(isFlashOn);
         player.GetComponent<FPSController>().enabled = true;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        isFlashOn = false;
     }
 
     private void Flip()
@@ -31,7 +34,12 @@ public class Note : MonoBehaviour
         {
             hud.SetActive(false);
             inv.SetActive(false);
-            flashlight.SetActive(false);
+            if (flashlight.activeInHierarchy)
+            {
+                isFlashOn = true;
+                flashlight.SetActive(false);
+            }
+            player.GetComponent<FPSController>().playerAudio.Stop();
             player.GetComponent<FPSController>().enabled = false;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;

@@ -16,7 +16,7 @@ public class HiddenText : MonoBehaviour
         playerController = GetComponent<FPSController>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         Vector3 origin = playerController.playerCamera.transform.position;
         Vector3 dir = playerController.playerCamera.transform.forward;
@@ -39,5 +39,7 @@ public class HiddenText : MonoBehaviour
                 }
             }
         }
+
+        Debug.DrawLine(transform.position, hit.point, Color.red);
     }
 }

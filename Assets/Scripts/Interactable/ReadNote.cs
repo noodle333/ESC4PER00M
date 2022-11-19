@@ -6,8 +6,11 @@ public class ReadNote : MonoBehaviour
     [SerializeField] private GameObject noteText;
     public bool inReach;
 
+    private GameObject player;
+
     private void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         inReach = false;
     }
 
@@ -31,7 +34,7 @@ public class ReadNote : MonoBehaviour
 
     private void Update()
     {
-        if (inReach && Input.GetKeyDown("e"))
+        if (inReach && Input.GetKeyDown("e") && player.GetComponent<CharacterController>().isGrounded)
         {
             noteObj.SetActive(true);
         }
