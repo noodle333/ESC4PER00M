@@ -14,6 +14,7 @@ public class FakeKey : MonoBehaviour
     public float timeRemaining = 1;
     private bool destroyFloor = false;
 
+    [SerializeField] private AudioSource pickupAudio;
 
     private void Start()
     {
@@ -43,6 +44,7 @@ public class FakeKey : MonoBehaviour
     {
         if (inReach && Input.GetKeyDown(KeyCode.E))
         {
+            pickupAudio.Play();
             keyMesh.SetActive(false);
             pickupText.SetActive(false);
 

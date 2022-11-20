@@ -22,15 +22,12 @@ public class FPSController : MonoBehaviour
     [Header("Holding Items")]
     public bool picked;
     [SerializeField] private float pickedSpeed;
-
     private Vector3 pickVelocity;
     public GameObject pickedObject;
-
     public Transform pickPos;
 
     //AUDIO
     public AudioSource playerAudio;
-    //ADD AUDIO CLIP LIST LATER 
 
     void Start()
     {

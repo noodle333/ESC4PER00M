@@ -3,6 +3,7 @@ using UnityEngine;
 public class DecoyKey : MonoBehaviour
 {
     [SerializeField] private GameObject pickupText;
+    [SerializeField] private AudioSource pickupAudio;
 
     public bool inReach;
 
@@ -34,6 +35,7 @@ public class DecoyKey : MonoBehaviour
     {
         if (inReach && Input.GetKeyDown(KeyCode.E))
         {
+            pickupAudio.Play();
             pickupText.SetActive(false);
             gameObject.SetActive(false);
         }

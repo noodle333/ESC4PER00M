@@ -4,6 +4,7 @@ public class OpenKeypad : MonoBehaviour
 {
     [SerializeField] private GameObject keypadObj;
     [SerializeField] private GameObject keypadText;
+    [SerializeField] private AudioSource openKeypadSound;
 
     public bool inReach;
 
@@ -40,6 +41,7 @@ public class OpenKeypad : MonoBehaviour
     {
         if (inReach && Input.GetKeyDown("e") && keypadObj.GetComponent<Keypad>().animate == false && player.GetComponent<CharacterController>().isGrounded)
         {
+            openKeypadSound.Play();
             keypadObj.SetActive(true);
         }
     }

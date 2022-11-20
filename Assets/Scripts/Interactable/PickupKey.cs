@@ -5,7 +5,7 @@ public class PickupKey : MonoBehaviour
     [SerializeField] private GameObject keyObj;
     [SerializeField] private GameObject invObj;
     [SerializeField] private GameObject pickupText;
-    //Audio Source
+    [SerializeField] private AudioSource pickupAudio;
 
     public bool inReach;
 
@@ -38,8 +38,8 @@ public class PickupKey : MonoBehaviour
     {
         if (inReach && Input.GetKeyDown(KeyCode.E))
         {
+            pickupAudio.Play();
             keyObj.SetActive(false);
-            //Play sound
             invObj.SetActive(true);
             pickupText.SetActive(false);
         }

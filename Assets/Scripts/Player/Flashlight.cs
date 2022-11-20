@@ -3,6 +3,7 @@ using UnityEngine;
 public class Flashlight : MonoBehaviour
 {
     [SerializeField] private GameObject flashlight;
+    [SerializeField] private AudioSource flashSound;
     public bool on;
     public bool off;
 
@@ -21,12 +22,14 @@ public class Flashlight : MonoBehaviour
             on = true;
             off = false;
             flashlight.SetActive(true);
+            flashSound.Play();
         }
         else if (on && Input.GetKeyDown(KeyCode.F))
         {
             off = true;
             on = false;
             flashlight.SetActive(false);
+            flashSound.Play();
         }
     }
 

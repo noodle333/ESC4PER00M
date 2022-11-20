@@ -4,6 +4,7 @@ public class ReadNote : MonoBehaviour
 {
     [SerializeField] private GameObject noteObj;
     [SerializeField] private GameObject noteText;
+    [SerializeField] private AudioSource noteAudio;
     public bool inReach;
 
     private GameObject player;
@@ -36,6 +37,7 @@ public class ReadNote : MonoBehaviour
     {
         if (inReach && Input.GetKeyDown("e") && player.GetComponent<CharacterController>().isGrounded)
         {
+            noteAudio.Play();
             noteObj.SetActive(true);
         }
     }
